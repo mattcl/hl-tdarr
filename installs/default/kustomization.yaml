@@ -3,18 +3,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ../../components/app
-  
-  
-  
+
 namespace: "tdarr"
 namePrefix: "tdarr-"
 images:
   - name: "ghcr.io/haveagitgat/tdarr"
     newTag: "2.17.01"
-  
-  
+
 configMapGenerator:
   - name: app-config
     envs:
       - "app-config.env"
-  

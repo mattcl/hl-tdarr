@@ -17,15 +17,34 @@ spec:
           envFrom:
             - configMapRef:
                 name: "app-config"
-            
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 8265
+              protocol: TCP
+            - name: server
+              containerPort: 8266
               protocol: TCP
           volumeMounts:
             - name: data
-              mountPath: /data
+              mountPath: /app/server
+            - name: config-data
+              mountPath: /app/configs
+            - name: cache
+              mountPath: /temp
+            - name: media
+              mountPath: /media
       volumes:
         - name: data
           persistentVolumeClaim:
             claimName: data-pvc
+        - name: config-data
+          persistentVolumeClaim:
+            claimName: config-data-pvc
+        - name: cache
+          hostPath:
+            path: /mnt/tdarr_cache
+            type: Directory
+        - name: media
+          hostPath:
+            path: /mnt/media
+            type: Directory
