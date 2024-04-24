@@ -15,6 +15,6 @@ metadata:
   name: server-svc
 spec:
   ports:
-    - port: 80
+    - port: 8266
       targetPort: server
       protocol: TCP
