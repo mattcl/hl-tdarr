@@ -33,8 +33,7 @@ spec:
   entryPoints:
     - tdarr-server
   routes:
-    - kind: Rule
-      match: HostSNI(`*`)
+    - match: HostSNI(`*`)
       priority: 10
       services:
         - name: tdarr-server-svc
